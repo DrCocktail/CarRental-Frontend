@@ -1,0 +1,26 @@
+.body {
+  height: 70vh;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #0d6efd;
+}
+
+.register {
+  color: #0d6efd;
+  transition: all 0.2s;
+}
+
+.register:hover {
+  cursor: pointer;
+  color: #043d94;
+}
+
+.register:focus {
+  outline-width: 0;
+}

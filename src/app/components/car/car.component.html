@@ -1,0 +1,57 @@
+<div class="row mt-4">
+  <div class="col-lg-9">
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control rounded-0 mb-3"
+      placeholder="Araba Ara..."
+      autocomplete="off"
+    />
+
+    <div class="table-responsive">
+      <table class="table table-hover table-striped border">
+        <thead>
+          <tr>
+            <th class="text-center" style="width: 50px">#</th>
+            <th>Araç</th>
+            <th>Renk</th>
+            <th>Model Yılı</th>
+            <th>Günlük Ücret</th>
+            <th class="text-center"><i class="bi-pencil me-1"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let car of carDetails | carFilter: filterText"
+            routerLink="/car/detail/{{ car.carId }}"
+          >
+            <td class="text-center fw-bold">{{ car.carId }}</td>
+            <td>{{ car.description }}</td>
+            <td>{{ car.colorName }}</td>
+            <td>{{ car.modelYear }}</td>
+            <td>{{ car.dailyPrice | currency: "₺ " }}</td>
+            <td class="text-center">
+              <button
+                class="btn btn-sm btn-primary rounded-pill px-3"
+                routerLink="/car/detail/{{ car.carId }}"
+              >
+                <i class="bi-pencil">İncele</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="d-grid mb-3">
+      <button
+        class="btn btn-primary rounded-pill px-4 ms-lg-2"
+        routerLink="/car/add"
+      >
+        <i class="bi-plus-square me-1"></i> Yeni Araba Ekle
+      </button>
+    </div>
+    <app-car-filter></app-car-filter>
+  </div>
+</div>
