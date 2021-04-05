@@ -5,6 +5,7 @@ import { ListResponseModel } from '../models/Responses/listResponseModel';
 import { User } from '../models/Users/user';
 import { SingleResponseModel } from '../models/Responses/singleResponseModel';
 import { ResponseModel } from '../models/Responses/responseModel';
+import { OperationClaims } from '../models/Users/operationClaims';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +20,9 @@ export class UserService {
     return this.httpClient.get<ListResponseModel<User>>(newPath);
   }
 
-  getUserClaims(id: number): Observable<ListResponseModel<User>> {
-    let newPath = this.apiUrl + 'getuserclaimsbyıd?userId=' + id;
-    return this.httpClient.get<ListResponseModel<User>>(newPath);
+  getUserClaims(user: User): Observable<ListResponseModel<OperationClaims>> {
+    let newPath = this.apiUrl + 'getuserclaims?user=' + user;
+    return this.httpClient.get<ListResponseModel<OperationClaims>>(newPath);
   }
 
   getUserById(id: number): Observable<SingleResponseModel<User>> {

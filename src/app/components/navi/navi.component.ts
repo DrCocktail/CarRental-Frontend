@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navi.component.css'],
 })
 export class NaviComponent implements OnInit {
-  title: string = 'Solaklar araç kiralama';
+  title: string = 'Car rental';
 
   constructor() {}
 

@@ -34,14 +34,14 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
   }
 
   register() {
-    if (!this.registerForm.valid) {
+    if (this.registerForm.invalid) {
       this.toastrService.warning('Lütfen boş alan bırakmayınız');
       return;
     }
@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
     }
 
     delete this.registerForm.value['confirmPassword'];
+
     let registerModel: RegisterModel = Object.assign(
       {},
       this.registerForm.value
@@ -62,8 +63,8 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(registerModel).subscribe(
       (responseSuccess) => {
-        this.localStorageService.setToken(responseSuccess.data.token);
-        this.getUserByEmail(registerModel.email);
+        localStorage.setItem('token', responseSuccess.data.token);
+        this.getUserByEmail(this.registerForm.value['email']);
         this.toastrService.success(responseSuccess.message, 'Başarılı');
 
         return this.router.navigate(['car']);

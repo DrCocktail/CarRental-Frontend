@@ -7,6 +7,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { LoginModel } from '../../../models/Users/loginModel';
 import { User } from 'src/app/models/Users/user';
 import { UserService } from 'src/app/services/user.service';
+import { OperationClaims } from 'src/app/models/Users/operationClaims';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
     });
   }
@@ -48,8 +49,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginModel).subscribe(
       (responseSuccess) => {
         this.toastrService.success(responseSuccess.message, 'Başarılı');
-        this.localStorageService.setToken(responseSuccess.data.token);
-        this.getUserByEmail(loginModel.email);
+        localStorage.setItem('token', responseSuccess.data.token);
+        this.getUserByEmail(this.loginForm.value['email']);
 
         return this.router.navigate(['car']);
       },

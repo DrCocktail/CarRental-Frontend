@@ -5,12 +5,7 @@
         <i class="bi-save me-1"></i> Marka Güncelle
       </div>
       <div class="card-body">
-        <form
-          autocomplete="off"
-          *ngIf="brand"
-          [formGroup]="brandUpdateForm"
-          (ngSubmit)="update()"
-        >
+        <form autocomplete="off" *ngIf="brand" [formGroup]="brandUpdateForm">
           <div class="form-floating mb-3">
             <input
               type="text"
@@ -23,8 +18,20 @@
           </div>
 
           <div class="text-end">
-            <button type="submit" class="btn btn-primary rounded-pill px-4 ms-lg-2">
-              <i class="bi-save2 me-1"></i> Güncelle
+            <button
+              type="submit"
+              (click)="delete()"
+              class="btn btn-primary rounded-pill px-4 ms-lg-2"
+            >
+              <b>Sil</b>
+            </button>
+
+            <button
+              type="submit"
+              (click)="update()"
+              class="btn btn-primary rounded-pill px-4 ms-lg-2"
+            >
+              <b>Güncelle</b>
             </button>
           </div>
         </form>
@@ -33,7 +40,10 @@
   </div>
   <div class="col-lg-3">
     <div class="d-grid">
-      <button class="btn btn-primary rounded-pill px-4 ms-lg-2" routerLink="/brand">
+      <button
+        class="btn btn-primary rounded-pill px-4 ms-lg-2"
+        routerLink="/brand"
+      >
         <i class="bi-list me-1"></i> Markaları Listele
       </button>
     </div>

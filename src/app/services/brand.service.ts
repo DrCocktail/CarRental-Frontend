@@ -30,8 +30,13 @@ export class BrandService {
   }
 
   update(brand: Brand): Observable<ResponseModel> {
-    console.log(brand)
+    console.log(brand);
     let newPath = this.apiUrl + 'update';
     return this.httpClient.put<ResponseModel>(newPath, brand);
+  }
+
+  delete(brand: Brand): Observable<ResponseModel> {
+    let newPath = this.apiUrl + 'delete' + brand;
+    return this.httpClient.delete<ResponseModel>(newPath);
   }
 }

@@ -15,7 +15,7 @@ import { Customer } from 'src/app/models/Customers/customer';
 export class ProfileComponent implements OnInit {
   customerDetail: CustomerDetails;
   user: User;
-  customerUpdateForm: FormGroup;
+  userUpdateForm: FormGroup;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   }
 
   createUserUpdateForm() {
-    this.customerUpdateForm = this.formBuilder.group({
+    this.userUpdateForm = this.formBuilder.group({
       userId: [this.user.userId],
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
@@ -46,27 +46,27 @@ export class ProfileComponent implements OnInit {
   }
 
   update() {
-    if (this.customerUpdateForm.invalid) {
+    if (this.userUpdateForm.invalid) {
       this.toastrService.warning('Bilgileri kontrol ediniz', 'Dikkat');
       return;
     }
 
     if (
-      this.customerUpdateForm.value['password'] !=
-      this.customerUpdateForm.value['confirmPassword']
+      this.userUpdateForm.value['password'] !=
+      this.userUpdateForm.value['confirmPassword']
     ) {
       this.toastrService.warning('Şifreler uyuşmuyor', 'Dikkat');
       return;
     }
 
-    delete this.customerUpdateForm.value['confirmPassword'];
-    let user: User = Object.assign({}, this.customerUpdateForm.value);
+    delete this.userUpdateForm.value['confirmPassword'];
+    let user: User = Object.assign({}, this.userUpdateForm.value);
 
     this.authService.update(user).subscribe(
       (responseSuccess) => {
         this.localStorageService.removeCurrentUser();
         delete user.password;
-        this.localStorageService.setCurrentUser(this.user);
+        this.localStorageService.setCurrentUser(this.userUpdateForm.value);
 
         return this.toastrService.success(responseSuccess.message, 'Başarılı');
       },

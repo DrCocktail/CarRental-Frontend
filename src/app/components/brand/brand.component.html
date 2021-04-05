@@ -1,3 +1,23 @@
+<h1>
+  Markalar
+  <span
+    ><button
+      class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-3"
+      routerLink="/brand/add"
+    >
+      <b>Yeni Marka Ekle</b>
+    </button></span
+  >
+</h1>
+<div class="col-lg-5">
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control rounded-0 mb-3"
+    placeholder="Marka Ara..."
+    autocomplete="off"
+  />
+</div>
 <div class="row mt-4">
   <div class="col-lg-8">
     <table class="table table-hover table-striped border">
@@ -15,20 +35,11 @@
               class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-2"
               routerLink="/brand/update/{{ brand.brandId }}"
             >
-              <i class="bi-pencil"></i> Güncelle
+              <b>Güncelle</b>
             </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-lg-5">
-  <input
-    type="text"
-    [(ngModel)]="filterText"
-    class="form-control rounded-0 mb-3"
-    placeholder="Marka Ara..."
-    autocomplete="off"
-  />
 </div>

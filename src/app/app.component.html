@@ -1,35 +1,4 @@
 <div class="container">
-  <app-navi></app-navi>
-  <div class="row">
-    <div class="col-md-3">
-      <h4>
-        Markalar
-        <span
-          ><button
-            class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-3"
-            routerLink="/brand/add"
-          >
-            <i class="bi-plus-square me-1"></i> Yeni Marka Ekle
-          </button></span
-        >
-      </h4>
-      <app-brand></app-brand>
-
-      <h4>
-        Renkler<span>
-          <button
-            class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-3"
-            routerLink="/color/add"
-          >
-            Yeni Renk Ekle
-          </button>
-        </span>
-      </h4>
-      <app-color></app-color>
-    </div>
-
-    <div class="col-md-9">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+  <app-navi></app-navi> <br />
+  <router-outlet></router-outlet>
 </div>

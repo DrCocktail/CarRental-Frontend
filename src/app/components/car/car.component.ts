@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../../services/car.service';
 import { CarDetail } from '../../models/Cars/carDetail';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CarImage } from 'src/app/models/Cars/carImage';
+import { CarImageService } from 'src/app/services/car-image.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-car',
@@ -11,11 +14,16 @@ import { ActivatedRoute } from '@angular/router';
 export class CarComponent implements OnInit {
   carDetail: CarDetail | undefined;
   carDetails: CarDetail[] = [];
+  carImages: CarImage[] = [];
+  imageBaseUrl = 'https://localhost:44380/';
   filterText: string = '';
 
   constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private carService: CarService,
-    private activatedRoute: ActivatedRoute
+    private carImageService: CarImageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +66,12 @@ export class CarComponent implements OnInit {
       this.carDetails = response.data.filter(
         (carDetail: CarDetail) => carDetail.colorId == cId
       );
+    });
+  }
+
+  getPhotosByCarId(carId: number) {
+    this.carImageService.getPhotosByCarId(carId).subscribe((response) => {
+      this.carImages = response.data;
     });
   }
 }

@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TokenModel } from '../models/Users/tokenModel';
 
 @Injectable()
 export class ExpirationInterceptor implements HttpInterceptor {
+  tokeniModel: TokenModel;
+
   constructor(
     private localstorageService: LocalStorageService,
     private router: Router,
@@ -27,7 +30,7 @@ export class ExpirationInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    let expirationDate = new Date(tokenModel.expiration).getMinutes();
+    let expirationDate = new Date(this.tokeniModel.expiration).getMinutes();
     let currentDate = new Date().getMinutes();
 
     if (Number(expirationDate) <= Number(currentDate)) {

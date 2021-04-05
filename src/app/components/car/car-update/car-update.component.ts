@@ -73,6 +73,7 @@ export class CarUpdateComponent implements OnInit {
 
     car.brandId = Number(car.brandId);
     car.colorId = Number(car.colorId);
+    car.description = String(car.description);
     car.modelYear = Number(car.modelYear);
     car.dailyPrice = Number(car.dailyPrice);
 
@@ -102,5 +103,9 @@ export class CarUpdateComponent implements OnInit {
         }
       }
     );
+  }
+
+  delete() {
+    return this.toastrService.success('Başarılı', 'Başarılı');
   }
 }

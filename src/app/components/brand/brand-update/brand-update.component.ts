@@ -71,4 +71,8 @@ export class BrandUpdateComponent implements OnInit {
       }
     );
   }
+
+  delete() {
+    return this.toastrService.success('Başarılı', 'Başarılı');
+  }
 }

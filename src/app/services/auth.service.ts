@@ -6,7 +6,7 @@ import { TokenModel } from '../models/Users/tokenModel';
 import { HttpClient } from '@angular/common/http';
 import { RegisterModel } from '../models/Users/registerModel';
 import { LocalStorageService } from './local-storage.service';
-import { Customer } from '../models/Customers/customer';
+import { User } from '../models/Users/user';
 
 @Injectable({
   providedIn: 'root',
@@ -37,15 +37,18 @@ export class AuthService {
     );
   }
 
-  update(customer: Customer): Observable<SingleResponseModel<TokenModel>> {
+  update(user: User): Observable<SingleResponseModel<TokenModel>> {
     let updatePath = this.apiUrl + 'update';
     return this.httpClient.put<SingleResponseModel<TokenModel>>(
       updatePath,
-      customer
+      user
     );
   }
 
-  isAuthenticated(): boolean {
-    return !!this.localStorageService.getToken();
+  isAuthenticated() {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
   }
 }

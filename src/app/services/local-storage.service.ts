@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { OperationClaims } from '../models/Users/operationClaims';
 import { User } from '../models/Users/user';
 
 @Injectable({
