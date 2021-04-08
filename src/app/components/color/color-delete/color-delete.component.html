@@ -1,1 +1,47 @@
-<p>color-delete works!</p>
+<div class="row mt-4">
+  <div class="col-lg-9">
+    <div class="card">
+      <div class="card-header fw-bold">
+        <i class="bi-save me-1"></i> Renk Güncelle
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" *ngIf="color" [formGroup]="colorDeleteForm">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="name"
+              formControlName="colorName"
+              readonly
+            />
+            <label for="name">Renk Adı</label>
+          </div>
+          <div><b>Bu rengi silmek üzeresiniz</b></div>
+          <div class="text-end">
+            <button
+              type="submit"
+              (click)="delete(color)"
+              class="btn btn-primary rounded-pill px-4 ms-lg-2"
+            >
+              <b>Sil</b>
+            </button>
+            <button
+              routerLink="/color"
+              class="btn btn-sm btn-primary rounded-pill px-3 ms-lg-2"
+            >
+              <b>Vazgeç</b>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="d-grid">
+      <button class="btn btn-primary" routerLink="/color">
+        <b>Renkleri Listele</b>
+      </button>
+    </div>
+  </div>
+</div>

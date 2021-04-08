@@ -35,7 +35,7 @@ export class ColorService {
   }
 
   delete(color: Color): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'delete' + color;
-    return this.httpClient.delete<ResponseModel>(newPath);
+    let newPath = this.apiUrl + 'delete';
+    return this.httpClient.post<ResponseModel>(newPath,color);
   }
 }

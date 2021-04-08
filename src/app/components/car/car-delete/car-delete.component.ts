@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
@@ -15,6 +16,7 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class CarDeleteComponent implements OnInit {
   car!: Car;
+  carDeleteForm: FormGroup;
   brands: Brand[] = [];
   colors: Color[] = [];
 
@@ -24,12 +26,30 @@ export class CarDeleteComponent implements OnInit {
     private colorService: ColorService,
     private toastrService: ToastrService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((param) => {
       this.getCarById(param['carId']);
+    });
+  }
+
+  getCarById(carId: number) {
+    this.carService.getCarById(carId).subscribe((response) => {
+      this.car = response.data;
+
+      this.getBrands();
+      this.getColors();
+      this.createCarDeleteForm();
+    });
+  }
+
+  createCarDeleteForm() {
+    this.carDeleteForm = this.formBuilder.group({
+      id: [this.car.carId, Validators.required],
+      description: [this.car.description, Validators.required],
     });
   }
 
@@ -50,15 +70,6 @@ export class CarDeleteComponent implements OnInit {
         }
       }
     );
-  }
-
-  getCarById(carId: number) {
-    this.carService.getCarById(carId).subscribe((response) => {
-      this.car = response.data;
-
-      this.getBrands();
-      this.getColors();
-    });
   }
 
   getBrands() {

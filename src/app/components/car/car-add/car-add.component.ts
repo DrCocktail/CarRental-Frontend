@@ -7,6 +7,7 @@ import { Color } from '../../../models/color';
 import { ToastrService } from 'ngx-toastr';
 import { CarService } from '../../../services/car.service';
 import { Car } from '../../../models/Cars/car';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-car-add',
@@ -23,7 +24,8 @@ export class CarAddComponent implements OnInit {
     private brandService: BrandService,
     private colorService: ColorService,
     private toastrService: ToastrService,
-    private carService: CarService
+    private carService: CarService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -82,7 +84,7 @@ export class CarAddComponent implements OnInit {
         this.carAddForm.reset();
         this.carAddForm.get('brandId').setValue('');
         this.carAddForm.get('colorId').setValue('');
-
+        this.router.navigate(['car']);
         return this.toastrService.success(responseSuccess.message, 'Başarılı');
       },
       (responseError) => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Brand } from '../../../models/brand';
 import { BrandService } from '../../../services/brand.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,7 +18,8 @@ export class BrandUpdateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private brandService: BrandService,
     private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +52,7 @@ export class BrandUpdateComponent implements OnInit {
 
     this.brandService.update(brand).subscribe(
       (responseSuccess) => {
+        this.router.navigate(['brand']);
         return this.toastrService.success(responseSuccess.message, 'Başarılı');
       },
       (responseError) => {
@@ -70,9 +72,5 @@ export class BrandUpdateComponent implements OnInit {
         }
       }
     );
-  }
-
-  delete() {
-    return this.toastrService.success('Başarılı', 'Başarılı');
   }
 }

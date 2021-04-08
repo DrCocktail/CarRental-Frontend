@@ -31,6 +31,12 @@
           <td>{{ color.colorName }}</td>
           <td class="text-end">
             <button
+              routerLink="/color/delete/{{ color.colorId }}"
+              class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-2"
+            >
+              <b>Sil</b>
+            </button>
+            <button
               class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-2"
               routerLink="/color/update/{{ color.colorId }}"
             >

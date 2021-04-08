@@ -71,8 +71,4 @@ export class ColorUpdateComponent implements OnInit {
       }
     );
   }
-
-  delete() {
-    return this.toastrService.success('Başarılı', 'Başarılı');
-  }
 }

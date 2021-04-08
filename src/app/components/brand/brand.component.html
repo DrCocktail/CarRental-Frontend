@@ -32,6 +32,12 @@
           <td>{{ brand.brandName }}</td>
           <td class="text-end">
             <button
+              routerLink="/brand/delete/{{ brand.brandId }}"
+              class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-2"
+            >
+              <b>Sil</b>
+            </button>
+            <button
               class="btn btn-sm btn-primary rounded-pill px-4 ms-lg-2"
               routerLink="/brand/update/{{ brand.brandId }}"
             >

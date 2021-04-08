@@ -36,7 +36,7 @@ export class BrandService {
   }
 
   delete(brand: Brand): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'delete' + brand;
-    return this.httpClient.delete<ResponseModel>(newPath);
+    let newPath = this.apiUrl + 'delete';
+    return this.httpClient.post<ResponseModel>(newPath,brand);
   }
 }
