@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CardService } from '../../../services/card.service';
 import { Card } from '../../../models/card';
 import { LocalStorageService } from '../../../services/local-storage.service';
-import { Customer } from '../../../models/Customers/customer';
+import { User } from 'src/app/models/Users/user';
 
 @Component({
   selector: 'app-card-saved',
@@ -11,7 +11,7 @@ import { Customer } from '../../../models/Customers/customer';
 })
 export class CardSavedComponent implements OnInit {
   cards: Card[];
-  currentCustomer: Customer;
+  currentUser: User;
   @Output() selectedCard: EventEmitter<Card> = new EventEmitter<Card>();
 
   constructor(
@@ -20,11 +20,11 @@ export class CardSavedComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.currentCustomer = Object.assign(
+    this.currentUser = Object.assign(
       {},
       this.localStorageService.getCurrentUser()
     );
-    this.getCardsByCustomerId(this.currentCustomer.id);
+    this.getCardsByCustomerId(this.currentUser.userId);
   }
 
   getCardsByCustomerId(customerId: number) {

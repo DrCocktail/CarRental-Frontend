@@ -6,7 +6,7 @@ import { BrandService } from '../../../services/brand.service';
 import { ColorService } from '../../../services/color.service';
 import { Brand } from '../../../models/brand';
 import { Color } from '../../../models/color';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -26,7 +26,8 @@ export class CarUpdateComponent implements OnInit {
     private brandService: BrandService,
     private colorService: ColorService,
     private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -84,7 +85,8 @@ export class CarUpdateComponent implements OnInit {
 
     this.carService.update(car).subscribe(
       (responseSuccess) => {
-        return this.toastrService.success(responseSuccess.message, 'Başarılı');
+        this.router.navigate(['Car']);
+        return this.toastrService.success(responseSuccess.message, 'Araba');
       },
       (responseError) => {
         if (responseError.error.ValidationErrors.length == 0) {
@@ -103,9 +105,5 @@ export class CarUpdateComponent implements OnInit {
         }
       }
     );
-  }
-
-  delete() {
-    return this.toastrService.success('Başarılı', 'Başarılı');
   }
 }

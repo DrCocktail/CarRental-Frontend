@@ -16,17 +16,31 @@ import { ProfileComponent } from './components/auth/profile/profile.component';
 import { CardComponent } from './components/card/card.component';
 import { ColorComponent } from './components/color/color.component';
 import { BrandComponent } from './components/brand/brand.component';
+import { CarDeleteComponent } from './components/car/car-delete/car-delete.component';
+import { CustomerUpdateComponent } from './components/customer/customer-update/customer-update.component';
+import { CustomerDeleteComponent } from './components/customer/customer-delete/customer-delete.component';
+import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
+import { ColorDeleteComponent } from './components/color/color-delete/color-delete.component';
 
 const routes: Routes = [
   { path: 'rental', component: RentalComponent },
-  { path: 'customer', component: CustomerComponent },
   { path: 'cards', component: CardComponent },
+  {
+    path: 'customer',
+    children: [
+      { path: '', component: CustomerComponent },
+      { path: 'add', component: CarAddComponent },
+      { path: 'update/:customerId', component: CustomerUpdateComponent },
+      { path: 'delete/:customerId', component: CustomerDeleteComponent },
+    ],
+  },
   {
     path: 'car',
     children: [
       { path: '', component: CarComponent },
       { path: 'add', component: CarAddComponent },
       { path: 'update/:carId', component: CarUpdateComponent },
+      { path: 'delete/:carId', component: CarDeleteComponent },
       { path: 'filter/:brandId/:colorId', component: CarComponent },
       { path: 'detail/:carId', component: CarDetailComponent },
     ],
@@ -37,6 +51,7 @@ const routes: Routes = [
       { path: '', component: BrandComponent },
       { path: 'add', component: BrandAddComponent },
       { path: 'update/:brandId', component: BrandUpdateComponent },
+      { path: 'delete/:brandId', component: BrandDeleteComponent },
     ],
   },
   {
@@ -45,6 +60,7 @@ const routes: Routes = [
       { path: '', component: ColorComponent },
       { path: 'add', component: ColorAddComponent },
       { path: 'update/:colorId', component: ColorUpdateComponent },
+      { path: 'delete/:colorId', component: ColorDeleteComponent },
     ],
   },
   {

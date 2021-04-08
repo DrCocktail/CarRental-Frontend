@@ -6,6 +6,7 @@
         <th>Müşteri</th>
         <th>E-Posta</th>
         <th>Şirket</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -13,9 +14,25 @@
         <th class="text-center">{{ customerDetail.id }}</th>
         <td>{{ customerDetail.firstName }} {{ customerDetail.lastName }}</td>
         <td>{{ customerDetail.email }}</td>
-        <td *ngIf="customerDetail.companyName">{{ customerDetail.companyName }}</td>
+        <td *ngIf="customerDetail.companyName">
+          {{ customerDetail.companyName }}
+        </td>
         <td *ngIf="!customerDetail.companyName" class="text-muted">
           Şirket bilgisi yok
+        </td>
+        <td>
+          <button
+            class="btn btn-primary rounded-pill px-3"
+            routerLink="delete/{{ customerDetail.id }}"
+          >
+            <b>Sil</b>
+          </button>
+          <button
+            class="btn btn-primary rounded-pill px-3"
+            routerLink="update/{{ customerDetail.id }}"
+          >
+            <b>Güncelle</b>
+          </button>
         </td>
       </tr>
     </tbody>

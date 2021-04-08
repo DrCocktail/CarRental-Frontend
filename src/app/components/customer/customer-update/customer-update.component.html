@@ -6,7 +6,7 @@
         <i class="bi-bullseye me-2"></i> <span>Rent A Car</span>
       </div>
       <div class="card-body">
-        <form [formGroup]="userUpdateForm" (ngSubmit)="update()">
+        <form [formGroup]="customerUpdateForm" (ngSubmit)="update()">
           <div class="row">
             <div class="col-lg-6">
               <div class="form-floating mb-3">
@@ -43,45 +43,11 @@
             />
             <label for="companyName">Şirket Adı</label>
           </div>
-          <div class="form-floating mb-3">
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              formControlName="email"
-              placeholder="email"
-            />
-            <label for="email">E-Posta Adresiniz *</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              formControlName="password"
-              placeholder="password"
-            />
-            <label for="password">Şifreniz *</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="confirmPassword"
-              formControlName="confirmPassword"
-              placeholder="confirmPassword"
-            />
-            <label for="confirmPassword">Şifrenizi Onaylayın *</label>
-          </div>
-          <div class="row">
-            <div class="col-lg-6"></div>
-            <div class="col-lg-6">
-              <div class="d-grid">
-                <button class="btn btn-primary rounded-pill px-3">
-                  <b>Güncelle</b>
-                </button>
-              </div>
-            </div>
+
+          <div class="d-grid">
+            <button class="btn btn-primary rounded-pill px-3">
+              <b>Güncelle</b>
+            </button>
           </div>
         </form>
       </div>

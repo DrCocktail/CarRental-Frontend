@@ -7,7 +7,8 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { LoginModel } from '../../../models/Users/loginModel';
 import { User } from 'src/app/models/Users/user';
 import { UserService } from 'src/app/services/user.service';
-import { OperationClaims } from 'src/app/models/Users/operationClaims';
+import { CustomerService } from 'src/app/services/customer.service';
+import { CustomerDetails } from 'src/app/models/Customers/customerDetail';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { OperationClaims } from 'src/app/models/Users/operationClaims';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   user: User;
+  customerDetail: CustomerDetails;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private userService: UserService
+    private userService: UserService,
+    private customerService: CustomerService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
@@ -51,6 +54,7 @@ export class LoginComponent implements OnInit {
         this.toastrService.success(responseSuccess.message, 'Başarılı');
         localStorage.setItem('token', responseSuccess.data.token);
         this.getUserByEmail(this.loginForm.value['email']);
+        this.getCustomerByEmail(this.loginForm.value['email']);
 
         return this.router.navigate(['car']);
       },
@@ -65,6 +69,15 @@ export class LoginComponent implements OnInit {
       this.user = responseSuccess.data;
       this.localStorageService.setCurrentUser(this.user);
     });
+  }
+
+  getCustomerByEmail(email: string) {
+    this.customerService
+      .getCustomerByEmail(email)
+      .subscribe((responseSuccess) => {
+        this.customerDetail = responseSuccess.data;
+        this.localStorageService.setCurrentCustomer(this.customerDetail);
+      });
   }
 
   getYear() {

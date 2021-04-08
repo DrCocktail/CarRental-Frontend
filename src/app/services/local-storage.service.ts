@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OperationClaims } from '../models/Users/operationClaims';
+import { CustomerDetails } from '../models/Customers/customerDetail';
 import { User } from '../models/Users/user';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { User } from '../models/Users/user';
 export class LocalStorageService {
   tokenKey: string = 'token';
   currentUser: string = 'currentUser';
+  currentCustomer: string = 'currentCustomer';
 
   constructor() {}
 
@@ -33,5 +34,20 @@ export class LocalStorageService {
 
   removeCurrentUser() {
     localStorage.removeItem(this.currentUser);
+  }
+
+  setCurrentCustomer(currentCustomerValue: CustomerDetails) {
+    localStorage.setItem(
+      this.currentCustomer,
+      JSON.stringify(currentCustomerValue)
+    );
+  }
+
+  getCurrentCustomer(): CustomerDetails {
+    return JSON.parse(localStorage.getItem(this.currentCustomer));
+  }
+
+  removeCurrentCustomer() {
+    localStorage.removeItem(this.currentCustomer);
   }
 }

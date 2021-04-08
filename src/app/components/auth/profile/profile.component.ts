@@ -4,8 +4,9 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
 import { User } from 'src/app/models/Users/user';
-import { CustomerDetails } from 'src/app/models/Customers/customerDetail';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/Customers/customer';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,6 @@ import { Customer } from 'src/app/models/Customers/customer';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  customerDetail: CustomerDetails;
   user: User;
   userUpdateForm: FormGroup;
 
@@ -21,7 +21,8 @@ export class ProfileComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +39,6 @@ export class ProfileComponent implements OnInit {
       userId: [this.user.userId],
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
-      companyName: [this.user.companyName],
       email: [this.user.email, [Validators.required, Validators.email]],
       password: [''],
       confirmPassword: [''],
@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
         this.localStorageService.removeCurrentUser();
         delete user.password;
         this.localStorageService.setCurrentUser(this.userUpdateForm.value);
-
+        this.router.navigate(['car']);
         return this.toastrService.success(responseSuccess.message, 'Başarılı');
       },
       (responseError) => {

@@ -4,6 +4,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/Users/user';
+import { Customer } from 'src/app/models/Customers/customer';
 
 @Component({
   selector: 'app-auth-menu',
@@ -27,6 +28,7 @@ export class AuthMenuComponent implements OnInit {
   logout() {
     this.localStorageService.removeToken();
     this.localStorageService.removeCurrentUser();
+    this.localStorageService.removeCurrentCustomer();
     this.toastrService.success('Çıkış yapıldı', 'Başarılı');
 
     return this.router.navigate(['/auth/login']);
@@ -34,5 +36,9 @@ export class AuthMenuComponent implements OnInit {
 
   getCurrentUser(): User {
     return this.localStorageService.getCurrentUser();
+  }
+
+  getCurrentCustomer(): Customer {
+    return this.localStorageService.getCurrentCustomer();
   }
 }

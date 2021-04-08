@@ -33,6 +33,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CardSavedComponent } from './components/card/card-saved/card-saved.component';
 import { CarRentComponent } from './components/car/car-rent/car-rent.component';
+import { CustomerAddComponent } from './components/customer/customer-add/customer-add.component';
+import { CustomerUpdateComponent } from './components/customer/customer-update/customer-update.component';
+import { CustomerDeleteComponent } from './components/customer/customer-delete/customer-delete.component';
+import { CarDeleteComponent } from './components/car/car-delete/car-delete.component';
+import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
+import { ColorDeleteComponent } from './components/color/color-delete/color-delete.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +67,12 @@ import { CarRentComponent } from './components/car/car-rent/car-rent.component';
     ProfileComponent,
     CarRentComponent,
     CardSavedComponent,
+    CustomerAddComponent,
+    CustomerUpdateComponent,
+    CustomerDeleteComponent,
+    CarDeleteComponent,
+    BrandDeleteComponent,
+    ColorDeleteComponent,
   ],
   imports: [
     BrowserModule,

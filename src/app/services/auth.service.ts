@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterModel } from '../models/Users/registerModel';
 import { LocalStorageService } from './local-storage.service';
 import { User } from '../models/Users/user';
+import { Customer } from '../models/Customers/customer';
 
 @Injectable({
   providedIn: 'root',

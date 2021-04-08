@@ -57,6 +57,6 @@ export class CarService {
 
   delete(car: Car): Observable<ResponseModel> {
     let newPath = this.apiUrl + 'delete';
-    return this.httpClient.delete<ResponseModel>(newPath);
+    return this.httpClient.post<ResponseModel>(newPath, car);
   }
 }

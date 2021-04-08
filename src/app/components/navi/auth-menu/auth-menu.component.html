@@ -14,7 +14,10 @@
   </button>
 </div>
 
-<div *ngIf="isAuth() && getCurrentUser()" class="dropdown">
+<div
+  *ngIf="isAuth() && getCurrentCustomer() && getCurrentUser()"
+  class="dropdown"
+>
   <button
     class="btn btn-secondary rounded-pill px-4 ms-lg-2 dropdown-toggle"
     type="button"

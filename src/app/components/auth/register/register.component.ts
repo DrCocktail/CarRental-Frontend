@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { User } from 'src/app/models/Users/user';
 import { UserService } from 'src/app/services/user.service';
+import { CustomerDetails } from 'src/app/models/Customers/customerDetail';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: User;
+  customerDetails: CustomerDetails;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,7 +36,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
