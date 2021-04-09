@@ -32,8 +32,18 @@ export class CustomerService {
     return this.httpClient.get<SingleResponseModel<CustomerDetails>>(newPath);
   }
 
+  getCustomerById(id: number): Observable<SingleResponseModel<Customer>> {
+    let newPath = this.apiUrl + 'getbycustomerid?id=' + id;
+    return this.httpClient.get<SingleResponseModel<Customer>>(newPath);
+  }
+
   update(customer: Customer): Observable<ResponseModel> {
     let newPath = this.apiUrl + 'update';
     return this.httpClient.put<ResponseModel>(newPath, customer);
+  }
+
+  delete(customer: Customer): Observable<ResponseModel> {
+    let newPath = this.apiUrl + 'delete';
+    return this.httpClient.post<ResponseModel>(newPath, customer);
   }
 }

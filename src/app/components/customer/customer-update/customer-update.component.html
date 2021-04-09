@@ -2,37 +2,9 @@
   <div class="col-lg-4 mx-auto my-auto">
     <div class="display-6 mb-4">Güncelle</div>
     <div class="card rounded-0 shadow">
-      <div class="card-header fw-bold">
-        <i class="bi-bullseye me-2"></i> <span>Rent A Car</span>
-      </div>
+      <div class="card-header fw-bold"><span>Rent A Car</span></div>
       <div class="card-body">
         <form [formGroup]="customerUpdateForm" (ngSubmit)="update()">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstName"
-                  formControlName="firstName"
-                  placeholder="firstName"
-                />
-                <label for="firstName">Adınız *</label>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastName"
-                  formControlName="lastName"
-                  placeholder="lastName"
-                />
-                <label for="lastName">Soyadınız *</label>
-              </div>
-            </div>
-          </div>
           <div class="form-floating mb-3">
             <input
               type="text"

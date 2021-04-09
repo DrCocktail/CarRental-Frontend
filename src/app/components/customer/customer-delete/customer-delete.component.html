@@ -1,1 +1,29 @@
-<p>customer-delete works!</p>
+<div class="row text-center body">
+  <div class="col-lg-4 mx-auto my-auto">
+    <div class="display-6 mb-4">Sil</div>
+    <div class="card rounded-0 shadow">
+      <div class="card-header fw-bold"><span>Rent A Car</span></div>
+      <div class="card-body">
+        <form [formGroup]="customerDeleteForm" (ngSubmit)="delete(customer)">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="companyName"
+              formControlName="companyName"
+              placeholder="companyName"
+            />
+            <label for="companyName">Şirket Adı</label>
+          </div>
+          <div><b>İsimli müşteriyi sileceksiniz</b></div>
+
+          <div class="d-grid">
+            <button class="btn btn-primary rounded-pill px-3">
+              <b>Sil</b>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

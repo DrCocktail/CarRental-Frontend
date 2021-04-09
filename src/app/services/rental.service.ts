@@ -31,6 +31,11 @@ export class RentalService {
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
+  getByRentalsId(id: number): Observable<ListResponseModel<Rental>> {
+    let newPath = this.apiUrl + 'getbyrentalıd?id=' + id;
+    return this.httpClient.get<ListResponseModel<Rental>>(newPath);
+  }
+
   setRentingCar(rental: Rental) {
     this.rentingCar = rental;
   }
@@ -45,6 +50,11 @@ export class RentalService {
 
   add(rental: Rental): Observable<ResponseModel> {
     let newPath = this.apiUrl + 'add';
+    return this.httpClient.post<ResponseModel>(newPath, rental);
+  }
+
+  update(rental: Rental): Observable<ResponseModel> {
+    let newPath = this.apiUrl + 'update';
     return this.httpClient.post<ResponseModel>(newPath, rental);
   }
 }
