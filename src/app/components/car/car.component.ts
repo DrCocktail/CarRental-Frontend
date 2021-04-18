@@ -41,6 +41,7 @@ export class CarComponent implements OnInit {
         return this.getCars();
       }
     });
+    this.getPhotosByCarId(this.carDetail.carId);
   }
 
   getCars() {
